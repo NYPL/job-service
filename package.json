@@ -1,0 +1,19 @@
+  {
+  "name": "JobService",
+  "version": "0.1.0",
+  "description": "Lambda for the NYPL Job Service",
+  "main": "index.js",
+  "scripts": {
+    "deploy-dev": "node-lambda deploy -n bibService -e qa -f config/var_qa.env -S config/event_sources_qa.json -o arn:aws:iam::224280085904:role/lambda_basic_execution -b subnet-f4fe56af -g sg-1d544067 -P nypl-sandbox",
+    "deploy-production": "node-lambda deploy -e production -f config/var_production.env -S config/event_sources_production.json -o 'arn:aws:iam::946183545209:role/lambda-full-access' -b subnet-5deecd15,subnet-59bcdd03 -g sg-116eeb60 -P nypl-digital-dev",
+    "test-create-job": "node-lambda run -j tests/events/create-job.json -x tests/events/context.json"
+  },
+  "repository": {
+  },
+  "keywords": [
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

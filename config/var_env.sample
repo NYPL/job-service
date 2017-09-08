@@ -1,0 +1,5 @@
+CACHE_HOST=
+CACHE_PORT=
+
+# This parameters should be encrypted using KMS
+SLACK_TOKEN=ABC...

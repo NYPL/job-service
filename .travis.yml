@@ -1,0 +1,10 @@
+language: php
+php:
+  - 7.1
+script:
+  - composer update
+  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+after_success:
+  - vendor/bin/coveralls -v
+  - vendor/bin/phpcs -n --standard=PSR1,PSR2 src/
+  - vendor/bin/phpcbf src/
