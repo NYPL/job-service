@@ -30,8 +30,8 @@ Homebrew is highly recommended for PHP:
    * If you have not already installed `node-lambda` as a global package, run `npm install -g node-lambda`.
 3. Setup [configuration files](#configuration).
    * Copy the `.env.sample` file to `.env`.
-   * Copy `config/var_env.sample` to `config/var_dev.env`.
-4. Replace sample values in `.env` and `config/var_dev.env`.
+   * Copy `config/var_env.sample` to `config/var_development.env`.
+4. Replace sample values in `.env` and `config/var_development.env`.
 
 ## Configuration
 
@@ -54,11 +54,10 @@ the proper AWS Lambda VPC, security group, and role.
  
 ~~~~
 "scripts": {
-    "deploy-dev": "node-lambda deploy -e qa -f config/var_qa.env -S config/event_sources_qa.json -o arn:aws:iam::224280085904:role/lambda_basic_execution -b subnet-f4fe56af -g sg-1d544067 -p nypl-sandbox",
-    "deploy-qa": "node-lambda deploy -e qa -f config/var_qa.env -S config/event_sources_qa.json -o arn:aws:iam::224280085904:role/lambda_basic_execution -b subnet-f4fe56af -g sg-1d544067 -p nypl-sandbox",
-    "deploy-production": "node-lambda deploy -e production -f config/var_production.env -S config/event_sources_production.json -b subnet-f4fe56af -g sg-1d544067",
-    "create-job": "node-lambda run -j tests/events/create-job.json -x tests/events/context.json"
-},
+    "deploy-dev": "./node_modules/node-lambda/bin/node-lambda deploy -n JobService -e development -f config/var_development.env -S config/event_sources_dev.json -o arn:aws:iam::224280085904:role/lambda_basic_execution -b subnet-f4fe56af -g sg-1d544067 -P nypl-sandbox",
+    "deploy-production": "./node_modules/node-lambda/bin/node-lambda deploy -e production -f config/var_production.env -S config/event_sources_production.json -o 'arn:aws:iam::946183545209:role/lambda-full-access' -b subnet-5deecd15,subnet-59bcdd03 -g sg-116eeb60 -P nypl-digital-dev",
+    "test-create-job": "./node_modules/node-lambda/bin/node-lambda run -f config/var_app -j tests/events/create-job.json -x tests/events/context.json"
+  },
 ~~~~
 
 ### config/var_app
