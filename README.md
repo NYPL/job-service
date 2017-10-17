@@ -106,7 +106,7 @@ $service->get("/swagger", function (Request $request, Response $response) {
 
 Before deploying, ensure [configuration files](#configuration) have been properly set up:
 
-1. Copy `config/var_env.sample` to `config/dev.env`, `config/var_qa.env`, and `config/var_production.env`.
+1. Copy `config/var_env.sample` to `config/var_development.env`, `config/var_qa.env`, and `config/var_production.env`.
    *  Verify environment variables are correct.
 2. Verify `.env` has correct settings for deployment.
 3. Verify `package.json` has correct command-line options for security group, VPC, and role (if applicable).
