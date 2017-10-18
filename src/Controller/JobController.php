@@ -9,7 +9,7 @@ use NYPL\Services\Model\Response\SuccessResponse\JobResponse;
 use NYPL\Starter\APIException;
 use NYPL\Starter\Controller;
 
-final class JobController extends Controller
+class JobController extends Controller
 {
     /**
      * @SWG\Post(
