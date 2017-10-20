@@ -1,7 +1,7 @@
 # NYPL Job Service
 
 [![Build Status](https://travis-ci.org/NYPL/job-service.svg?branch=master)](https://travis-ci.org/NYPL/job-service)
-[![Coverage Status](https://coveralls.io/repos/github/NYPL/job-service/badge.svg?branch=travis)](https://coveralls.io/github/NYPL/job-service?branch=travis)
+[![Coverage Status](https://coveralls.io/repos/github/NYPL/job-service/badge.svg?branch=master)](https://coveralls.io/github/NYPL/job-service?branch=master)
 
 This package is intended to be used as a Lambda-based Node.js/PHP Job Service using the 
 [NYPL PHP Microservice Starter](https://github.com/NYPL/php-microservice-starter).
