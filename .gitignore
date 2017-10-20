@@ -5,3 +5,4 @@ dist
 vendor
 build
 .lambda
+.idea

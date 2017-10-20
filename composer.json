@@ -11,7 +11,8 @@
   },
   "autoload": {
     "psr-4": {
-      "NYPL\\Services\\": [ "src/" ]
+      "NYPL\\Services\\": [ "src/" ],
+      "NYPL\\Services\\Test\\": [ "tests/" ]
     }
   },
   "scripts": {
