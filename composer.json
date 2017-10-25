@@ -2,7 +2,7 @@
   "name": "nypl-bib-service",
   "description": "Lambda for the NYPL Bib Service",
   "require": {
-    "nypl/microservice-starter": "~1.0"
+    "nypl/microservice-starter": "^1.0.0"
   },
   "require-dev": {
     "phpunit/phpunit": "6.2.1",
