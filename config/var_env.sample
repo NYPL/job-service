@@ -1,6 +1,0 @@
-CACHE_HOST=cache.host.from.aws.com
-CACHE_PORT=6379
-
-# These parameters should be encrypted using KMS
-
-SLACK_TOKEN="encrypted api key using KMS"

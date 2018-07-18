@@ -1,6 +1,6 @@
 {
-  "name": "nypl-bib-service",
-  "description": "Lambda for the NYPL Bib Service",
+  "name": "JobService",
+  "description": "Lambda for the NYPL Job Service",
   "require": {
     "nypl/microservice-starter": "^1.0.0"
   },

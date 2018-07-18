@@ -104,16 +104,11 @@ $service->get("/swagger", function (Request $request, Response $response) {
 
 ## Deployment
 
-Before deploying, ensure [configuration files](#configuration) have been properly set up:
+Travis CI is configured to run our build and deployment process on AWS.
 
-1. Copy `config/var_env.sample` to `config/var_development.env`, `config/var_qa.env`, and `config/var_production.env`.
-   *  Verify environment variables are correct.
-2. Verify `.env` has correct settings for deployment.
-3. Verify `package.json` has correct command-line options for security group, VPC, and role (if applicable).
-4. Verify `config/event_sources_dev.json`, `config/event_sources_qa.json`, `config/event_sources_production.json` have proper event sources.
+Our Travis CI/CD pipeline will execute the following steps for each deployment trigger:
 
-To deploy to an environment, run the corresponding command. For example:
-
-~~~~
-npm run deploy-dev
-~~~~
+* Run unit test coverage
+* Build Lambda deployment packages
+* Execute the `deploy` hook only for `development`, `qa` and `master` branches to adhere to our `node-lambda` deployment process
+* Developers _do not_ need to manually deploy the application unless an error occurred via Travis

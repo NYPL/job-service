@@ -11,6 +11,8 @@ use NYPL\Starter\Controller;
 
 class JobController extends Controller
 {
+    const DEFAULT_CACHE_TIMEOUT_SECONDS = 864000;
+
     /**
      * @SWG\Post(
      *     path="/v0.1/jobs",
@@ -37,12 +39,13 @@ class JobController extends Controller
      *         @SWG\Schema(ref="#/definitions/ErrorResponse")
      *     )
      * )
+     * @throws \Exception
      */
     public function createJob()
     {
         $job = new Job($this->getRequest()->getParsedBody());
 
-        $job->create();
+        $job->create(false, self::DEFAULT_CACHE_TIMEOUT_SECONDS);
 
         return $this->getResponse()->withJson(
             new JobResponse($job)
@@ -84,6 +87,7 @@ class JobController extends Controller
      *         ),
      *     )
      * )
+     * @throws APIException
      */
     public function getJob($id)
     {
@@ -133,6 +137,7 @@ class JobController extends Controller
      *         @SWG\Schema(ref="#/definitions/ErrorResponse")
      *     )
      * )
+     * @throws APIException|\Exception
      */
     public function createJobNotice($id)
     {
@@ -184,6 +189,7 @@ class JobController extends Controller
      *         description="Already started"
      *     )
      * )
+     * @throws APIException|\Exception
      */
     public function startJob($id)
     {
@@ -243,6 +249,7 @@ class JobController extends Controller
      *         @SWG\Schema(ref="#/definitions/ErrorResponse")
      *     )
      * )
+     * @throws APIException|\Exception
      */
     public function setJobSuccess($id)
     {
@@ -311,6 +318,7 @@ class JobController extends Controller
      *         @SWG\Schema(ref="#/definitions/ErrorResponse")
      *     )
      * )
+     * @throws APIException|\Exception
      */
     public function setJobFailure($id)
     {

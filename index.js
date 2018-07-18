@@ -25,14 +25,11 @@ exports.handler = function(event, context, callback) {
     };
 
     var requestUri = event.path || '';
-    var queryString = '';
 
-    if (event.queryStringParameters) {
-        queryString = querystring.stringify(event.queryStringParameters);
+    var queryString = querystring.stringify(event.queryStringParameters);
 
-        headers['QUERY_STRING'] = queryString;
-        requestUri += '?' + queryString;
-    }
+    headers['QUERY_STRING'] = queryString;
+    requestUri += '?' + queryString;
 
     headers['REQUEST_URI'] = requestUri;
 
@@ -73,7 +70,10 @@ exports.handler = function(event, context, callback) {
     }
 
     if (php.error) {
-        callback(php.error);
+        callback(null, {
+            statusCode: 500,
+            body: 'Error executing PHP (ERROR: ' + php.stderr.toString() + ')'
+        });
         return false;
     }
 
@@ -81,6 +81,14 @@ exports.handler = function(event, context, callback) {
         php.stderr.toString().split("\n").map(function (message) {
             if (message.trim().length) console.log(message);
         });
+    }
+
+    if (!php.stdout.toString()) {
+        callback(null, {
+            statusCode: 500,
+            body: 'No body returned in response (ERROR: ' + php.stderr.toString() + ')'
+        });
+        return false;
     }
 
     var parsedResponse = parser.parseResponse(php.stdout.toString());

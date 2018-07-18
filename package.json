@@ -4,9 +4,11 @@
   "description": "Lambda for the NYPL Job Service",
   "main": "index.js",
   "scripts": {
-    "deploy-dev": "./node_modules/node-lambda/bin/node-lambda deploy -n JobService -e development -f config/var_development.env -S config/event_sources_dev.json -o arn:aws:iam::224280085904:role/lambda_basic_execution -b subnet-f4fe56af -g sg-1d544067 -P nypl-sandbox",
-    "deploy-production": "./node_modules/node-lambda/bin/node-lambda deploy -e production -f config/var_production.env -S config/event_sources_production.json -o 'arn:aws:iam::946183545209:role/lambda-full-access' -b subnet-5deecd15,subnet-59bcdd03 -g sg-116eeb60 -P nypl-digital-dev",
-    "test-create-job": "./node_modules/node-lambda/bin/node-lambda run -f config/var_app -j tests/events/create-job.json -x tests/events/context.json"
+    "deploy-development": "./node_modules/.bin/node-lambda deploy -e development -f ./config/development.env -o arn:aws:iam::224280085904:role/lambda_basic_execution -a $AWS_ACCESS_KEY_ID_DEVELOPMENT -s $AWS_SECRET_ACCESS_KEY_DEVELOPMENT",
+    "deploy-production": "./node_modules/.bin/node-lambda deploy -e production -f ./config/production.env -o arn:aws:iam::946183545209:role/lambda-full-access -a $AWS_ACCESS_KEY_ID_PRODUCTION -s $AWS_SECRET_ACCESS_KEY_PRODUCTION",
+    "deploy-development-local": "./node_modules/node-lambda/bin/node-lambda deploy -e development -f config/development.env -o arn:aws:iam::224280085904:role/lambda_basic_execution -b subnet-f4fe56af -g sg-1d544067 -P nypl-sandbox",
+    "deploy-production-local": "./node_modules/node-lambda/bin/node-lambda deploy -e production -f config/production.env -o 'arn:aws:iam::946183545209:role/lambda-full-access' -b subnet-5deecd15,subnet-59bcdd03 -g sg-116eeb60 -P nypl-digital-dev",
+    "test-create-job": "./node_modules/node-lambda/bin/node-lambda run -j tests/events/create-job.json -x tests/events/context.json"
   },
   "repository": {
   },
