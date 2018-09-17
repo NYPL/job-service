@@ -20,57 +20,19 @@ Homebrew is highly recommended for PHP:
   * `brew install php71`
   * `brew install php71-redis`
   
-
 ## Installation
 
 1. Clone the repo.
 2. Install required dependencies.
    * Run `npm install` to install Node.js packages.
    * Run `composer install` to install PHP packages.
-   * If you have not already installed `node-lambda` as a global package, run `npm install -g node-lambda`.
-3. Setup [configuration files](#configuration).
-   * Copy the `.env.sample` file to `.env`.
-   * Copy `config/var_env.sample` to `config/var_development.env`.
-4. Replace sample values in `.env` and `config/var_development.env`.
 
 ## Configuration
 
 Various files are used to configure and deploy the Lambda.
 
-### .env
-
-`.env` is used *locally* for two purposes:
-
-1. By `node-lambda` for deploying to and configuring Lambda in *all* environments. 
-   * You should use this file to configure the common settings for the Lambda 
-   (e.g. timeout, Node version). 
-2. To set local environment variables so the Lambda can be run and tested in a local environment.
-   These parameters are ultimately set by the [var environment files](#var_environment) when the Lambda is deployed.
-
-### package.json
-
-Configures `npm run` commands for each environment for deployment and testing. Deployment commands may also set
-the proper AWS Lambda VPC, security group, and role.
- 
-~~~~
-"scripts": {
-    "deploy-dev": "./node_modules/node-lambda/bin/node-lambda deploy -n JobService -e development -f config/var_development.env -S config/event_sources_dev.json -o arn:aws:iam::224280085904:role/lambda_basic_execution -b subnet-f4fe56af -g sg-1d544067 -P nypl-sandbox",
-    "deploy-production": "./node_modules/node-lambda/bin/node-lambda deploy -e production -f config/var_production.env -S config/event_sources_production.json -o 'arn:aws:iam::946183545209:role/lambda-full-access' -b subnet-5deecd15,subnet-59bcdd03 -g sg-116eeb60 -P nypl-digital-dev",
-    "test-create-job": "./node_modules/node-lambda/bin/node-lambda run -f config/var_app -j tests/events/create-job.json -x tests/events/context.json"
-  },
-~~~~
-
-### config/var_app
-
-Configures environment variables common to *all* environments.
-
-### config/var_*environment*.env
-
-Configures environment variables specific to each environment.
-
-### config/event_sources_*environment*
-
-Configures Lambda event sources (triggers) specific to each environment.
+ * `.env` - Lambda configuration common across deployments
+ * `./config/[environment].env` - Deployment specific configuration
 
 ## Usage
 
