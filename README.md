@@ -32,7 +32,8 @@ Homebrew is highly recommended for PHP:
 Various files are used to configure and deploy the Lambda.
 
  * `.env` - Lambda configuration common across deployments
- * `./config/[environment].env` - Deployment specific configuration
+ * `package.json` - See "scripts" section for environment specific configuration
+ * `./config/[environment].env` - Deployment specific environmental variables
 
 ## Usage
 
