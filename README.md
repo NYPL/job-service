@@ -106,6 +106,10 @@ $service->get("/swagger", function (Request $request, Response $response) {
 
 Travis CI is configured to run our build and deployment process on AWS.
 
+Deployments (AWS account `nypl-digital-dev`):
+ * Production: Lambda > Functions > JobService-production
+ * QA: Lambda > Functions > JobService-qa
+
 Our Travis CI/CD pipeline will execute the following steps for each deployment trigger:
 
 * Run unit test coverage
