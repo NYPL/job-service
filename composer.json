@@ -1,5 +1,5 @@
 {
-  "name": "nypl/JobService",
+  "name": "nypl/job-service",
   "description": "Lambda for the NYPL Job Service",
   "require": {
     "nypl/microservice-starter": "^1.0.0"
