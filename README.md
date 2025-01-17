@@ -1,3 +1,7 @@
+# Deprecated
+
+As of Jan 16 2025, this app has been replaced by https://github.com/NYPL/job-service-v2
+
 # NYPL Job Service
 
 [![Build Status](https://travis-ci.org/NYPL/job-service.svg?branch=master)](https://travis-ci.org/NYPL/job-service)
